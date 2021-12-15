@@ -1,1 +1,1 @@
-(()=>{"use strict"})();
+(()=>{"use strict";(()=>{const e=document.querySelector(".header-modal ");document.querySelectorAll(".btn-warning").forEach((t=>{t.addEventListener("click",(()=>{(({timing:e,draw:t,duration:n})=>{let a=performance.now();requestAnimationFrame((function i(r){let o=(r-a)/n;o>1&&(o=1);let l=e(o);t(l),o<1&&requestAnimationFrame(i)}))})({duration:500,timing:e=>e,draw(t){e.style.display="block",e.style.opacity=t}})}))})),e.addEventListener("click",(t=>{t.target.classList.contains("header-modal__close")&&(e.style.display="none")}))})()})();

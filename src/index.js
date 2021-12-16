@@ -7,6 +7,7 @@ import sendForm from './modules/sendForm.js'
 import headerModal from './modules/headerModal.js'
 import servicesModal from './modules/servicesModal.js'
 import scroll from './modules/scroll.js'
+import validator from './modules/validator.js'
 
 benefitsSlider()
 servicesSlider()
@@ -17,3 +18,4 @@ sendForm()
 scroll()
 headerModal()
 servicesModal()
+validator()

@@ -5,7 +5,14 @@ const calculater = (price = 1000) => {
     const calcInput = document.querySelector('#calc-input');
     const total = document.querySelector('#calc-total');
 
+    const validate = () => {
+        calcInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^0-9]+/, "");
+        });
+    }
+
     const countCalc = () => {
+        validate()
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value
         const calcTypeMaterialValue = +calcTypeMaterial.options[calcTypeMaterial.selectedIndex].value
 
@@ -25,11 +32,17 @@ const calculater = (price = 1000) => {
         total.value = totalValue
     }
 
-    calcBlock.addEventListener('input', (e) => {
-        if (e.target === calcType || e.target === calcTypeMaterial || e.target === calcInput) {
-            countCalc()
+    try {
+        if (calcBlock) {
+            calcBlock.addEventListener('input', (e) => {
+                if (e.target === calcType || e.target === calcTypeMaterial || e.target === calcInput) {
+                    countCalc()
+                }
+            })
         }
-    })
+    } catch (error) {
+        console.log(error.message)
+    }
 }
 
 export default calculater

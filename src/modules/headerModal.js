@@ -3,7 +3,8 @@ import {
 } from "./helpers"
 
 const headerModal = () => {
-    const modal = document.querySelector('.header-modal ');
+    const modal = document.querySelector('.overlay ');
+    const modalContent = document.querySelector('.header-modal ');
     const buttons = document.querySelectorAll('.btn-warning');
 
     buttons.forEach(button => {
@@ -15,15 +16,17 @@ const headerModal = () => {
                 },
                 draw(progress) {
                     modal.style.display = 'block';
-                    modal.style.opacity = progress;
+                    modalContent.style.display = 'block';
+                    modalContent.style.opacity = progress;
                 }
             })
         })
     });
 
-    modal.addEventListener('click', (e) => {
+    modalContent.addEventListener('click', (e) => {
         if (e.target.classList.contains('header-modal__close')) {
             modal.style.display = 'none';
+            modalContent.style.display = 'none';
         }
     })
 }

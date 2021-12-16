@@ -11,7 +11,7 @@ import scroll from './modules/scroll.js'
 benefitsSlider()
 servicesSlider()
 documents()
-calculater()
+calculater(1000)
 timer('31 december 2021 23:59')
 sendForm()
 scroll()

@@ -5,8 +5,11 @@ const scroll = () => {
     btn.style.display = 'none'
 
     document.addEventListener('scroll', () => {
-        console.log((scrollY > 500))
-        if ((scrollY > 500)) {
+        let header = document.getElementById('header').scrollHeight
+        let navigation = document.getElementById('navigation').scrollHeight
+        let offer = document.getElementById('offer').scrollHeight
+
+        if (scrollY > (header + navigation + offer)) {
             btn.style.display = 'block'
         } else {
             btn.style.display = 'none'

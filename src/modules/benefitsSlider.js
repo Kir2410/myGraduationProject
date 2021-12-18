@@ -2,7 +2,7 @@ const benefitsSlider = () => {
     const slider = document.querySelector('#benefits')
     const sliderBlock = document.querySelector('.benefits-wrap')
     const slides = document.querySelectorAll('.benefits__item')
-    const timerInterval = 2000
+    const timerInterval = 10000
 
     let currentSlide = 0
     let secondSlide = 1
@@ -10,27 +10,24 @@ const benefitsSlider = () => {
     let interval
 
     const prevSlide = () => {
-        sliderBlock.prepend(slides[slides.length - 1])
-        slides[currentSlide].style.display = 'block'
         slides[thirdtSlide].style.display = 'none'
 
         currentSlide--
         secondSlide--
         thirdtSlide--
 
-        if (currentSlide >= slides.length) {
-            currentSlide = 0
+        if (currentSlide < 0) {
+            currentSlide = (slides.length - 1)
         }
-        if (secondSlide >= slides.length) {
-            secondSlide = 0
+        if (secondSlide < 0) {
+            secondSlide = (slides.length - 1)
         }
-        if (thirdtSlide >= slides.length) {
-            thirdtSlide = 0
+        if (thirdtSlide < 0) {
+            thirdtSlide = (slides.length - 1)
         }
 
+        sliderBlock.prepend(slides[currentSlide])
         slides[currentSlide].style.display = 'block'
-        slides[secondSlide].style.display = 'block'
-        slides[thirdtSlide].style.display = 'block'
     }
     const nextSlide = () => {
         sliderBlock.append(slides[currentSlide])
@@ -77,9 +74,9 @@ const benefitsSlider = () => {
     slides.forEach(slide => {
         slide.style.display = 'none'
     })
-    slides[0].style.display = 'block'
-    slides[1].style.display = 'block'
-    slides[2].style.display = 'block'
+    slides[currentSlide].style.display = 'block'
+    slides[secondSlide].style.display = 'block'
+    slides[thirdtSlide].style.display = 'block'
 
     startSlide(timerInterval)
 }

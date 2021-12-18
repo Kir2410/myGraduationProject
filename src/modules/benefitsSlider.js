@@ -2,83 +2,131 @@ const benefitsSlider = () => {
     const slider = document.querySelector('#benefits')
     const sliderBlock = document.querySelector('.benefits-wrap')
     const slides = document.querySelectorAll('.benefits__item')
-    const timerInterval = 10000
+    const timerInterval = 2000
 
     let currentSlide = 0
     let secondSlide = 1
     let thirdtSlide = 2
     let interval
 
-    const prevSlide = () => {
-        slides[thirdtSlide].style.display = 'none'
+    if (window.innerWidth >= 576) {
+        const prevSlide = () => {
+            slides[thirdtSlide].style.display = 'none'
 
-        currentSlide--
-        secondSlide--
-        thirdtSlide--
+            currentSlide--
+            secondSlide--
+            thirdtSlide--
 
-        if (currentSlide < 0) {
-            currentSlide = (slides.length - 1)
+            if (currentSlide < 0) {
+                currentSlide = (slides.length - 1)
+            }
+            if (secondSlide < 0) {
+                secondSlide = (slides.length - 1)
+            }
+            if (thirdtSlide < 0) {
+                thirdtSlide = (slides.length - 1)
+            }
+
+            sliderBlock.prepend(slides[currentSlide])
+            slides[currentSlide].style.display = 'block'
         }
-        if (secondSlide < 0) {
-            secondSlide = (slides.length - 1)
-        }
-        if (thirdtSlide < 0) {
-            thirdtSlide = (slides.length - 1)
+        const nextSlide = () => {
+            sliderBlock.append(slides[currentSlide])
+            slides[currentSlide].style.display = 'none'
+
+            currentSlide++
+            secondSlide++
+            thirdtSlide++
+
+            if (currentSlide >= slides.length) {
+                currentSlide = 0
+            }
+            if (secondSlide >= slides.length) {
+                secondSlide = 0
+            }
+            if (thirdtSlide >= slides.length) {
+                thirdtSlide = 0
+            }
+
+            slides[currentSlide].style.display = 'block'
+            slides[secondSlide].style.display = 'block'
+            slides[thirdtSlide].style.display = 'block'
         }
 
-        sliderBlock.prepend(slides[currentSlide])
-        slides[currentSlide].style.display = 'block'
-    }
-    const nextSlide = () => {
-        sliderBlock.append(slides[currentSlide])
-        slides[currentSlide].style.display = 'none'
-
-        currentSlide++
-        secondSlide++
-        thirdtSlide++
-
-        if (currentSlide >= slides.length) {
-            currentSlide = 0
+        const startSlide = (timer = 1500) => {
+            interval = setInterval(nextSlide, timer)
         }
-        if (secondSlide >= slides.length) {
-            secondSlide = 0
-        }
-        if (thirdtSlide >= slides.length) {
-            thirdtSlide = 0
+        const stopSlide = () => {
+            clearInterval(interval)
         }
 
+        slider.addEventListener('click', (e) => {
+            e.preventDefault()
+            if (e.target.closest('.benefits__arrow--right')) {
+                nextSlide()
+            } else if (e.target.closest('.benefits__arrow--left')) {
+                prevSlide()
+            }
+        })
+
+        slides.forEach(slide => {
+            slide.style.display = 'none'
+        })
         slides[currentSlide].style.display = 'block'
         slides[secondSlide].style.display = 'block'
         slides[thirdtSlide].style.display = 'block'
-    }
 
-    const startSlide = (timer = 1500) => {
-        interval = setInterval(nextSlide, timer)
-    }
-    const stopSlide = () => {
-        clearInterval(interval)
-    }
+        startSlide(timerInterval)
+    } else {
+        const prevSlide = () => {
+            slides[currentSlide].style.display = 'none'
 
-    slider.addEventListener('click', (e) => {
-        e.preventDefault()
-        if (e.target.closest('.benefits__arrow--right')) {
-            nextSlide()
-            console.log('вправо')
+            currentSlide--
 
-        } else if (e.target.closest('.benefits__arrow--left')) {
-            prevSlide()
-            console.log('влево')
+            if (currentSlide < 0) {
+                currentSlide = (slides.length - 1)
+            }
+
+            sliderBlock.prepend(slides[currentSlide])
+            slides[currentSlide].style.display = 'block'
         }
-    })
+        const nextSlide = () => {
+            sliderBlock.append(slides[currentSlide])
+            slides[currentSlide].style.display = 'none'
 
-    slides.forEach(slide => {
-        slide.style.display = 'none'
-    })
-    slides[currentSlide].style.display = 'block'
-    slides[secondSlide].style.display = 'block'
-    slides[thirdtSlide].style.display = 'block'
+            currentSlide++
 
-    startSlide(timerInterval)
+            if (currentSlide >= slides.length) {
+                currentSlide = 0
+            }
+
+            slides[currentSlide].style.display = 'block'
+        }
+
+        const startSlide = (timer = 1500) => {
+            interval = setInterval(nextSlide, timer)
+        }
+        const stopSlide = () => {
+            clearInterval(interval)
+        }
+
+        slider.addEventListener('click', (e) => {
+            e.preventDefault()
+            if (e.target.closest('.benefits__arrow--right')) {
+                nextSlide()
+            } else if (e.target.closest('.benefits__arrow--left')) {
+                prevSlide()
+            }
+        })
+
+        slides.forEach(slide => {
+            slide.style.display = 'none'
+            slide.style.maxWidth = '100%'
+        })
+        slides[currentSlide].style.display = 'block'
+
+        startSlide(timerInterval)
+    }
 }
 
 export default benefitsSlider

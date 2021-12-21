@@ -4,6 +4,18 @@ const sendForm = ({
 }) => {
     const formBlocks = document.querySelectorAll(forms)
 
+    const validate = (list) => {
+        let success = true
+
+        list.forEach(input => {
+            if (input.value == '') {
+                success = false
+            }
+        })
+
+        return success
+    }
+
     const sendData = (data) => {
         return fetch('http://jsonplaceholder.typicode.com/posts', {
             method: 'POST',
@@ -16,7 +28,7 @@ const sendForm = ({
 
     const submitForm = (form, someElem) => {
         const formData = new FormData(form)
-        const formElements = form.querySelectorAll('input')
+        const formElements = form.querySelectorAll('input[type="text"]')
         const formBody = {}
 
         formData.forEach((val, key) => {
@@ -30,15 +42,20 @@ const sendForm = ({
             }
         })
 
-        sendData(formBody)
-            .then(data => {
-                formElements.forEach(input => {
-                    input.value = ''
+        if (validate(formElements)) {
+            sendData(formBody)
+                .then(data => {
+                    formElements.forEach(input => {
+                        input.value = ''
+                    })
                 })
-            })
-            .catch(error => {
-                console.log(error.message)
-            })
+                .catch(error => {
+                    console.log(error.message)
+                })
+        } else {
+            alert('Заполните пустые поля!')
+            validate(formElements)
+        }
     }
 
     formBlocks.forEach((elem) => {

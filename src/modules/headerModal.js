@@ -3,9 +3,9 @@ import {
 } from "./helpers"
 
 const headerModal = () => {
-    const modal = document.querySelector('.overlay ');
+    const modal = document.querySelector('.overlay');
     const modalContent = document.querySelector('.header-modal ');
-    const buttons = document.querySelectorAll('.btn-warning');
+    const buttons = document.querySelectorAll('.fancyboxModal');
 
     buttons.forEach(button => {
         button.addEventListener('click', () => {

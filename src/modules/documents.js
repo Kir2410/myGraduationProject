@@ -3,44 +3,42 @@ import {
 } from "./helpers"
 
 const documents = () => {
-    const docs = document.querySelectorAll('.document-overlay')
-    const modal = document.querySelector('.overlay ');
-    const modalContent = document.querySelector('.header-modal ');
+    // const docs = document.querySelectorAll('.document-overlay')
+    // const modal = document.querySelector('.overlay ')
+    // const modalContent = document.querySelector('.services-modal')
+    // const btn = document.createElement('span')
 
-    docs.forEach((doc) => {
-        doc.addEventListener('mouseenter', () => {
-            doc.style.opacity = 1
-            // doc.style.width = '80%'
-            // doc.style.left = '20px'
-        })
-        doc.addEventListener('mouseleave', () => {
-            doc.style.opacity = 0
-        })
-        doc.addEventListener('click', (e) => {
-            e.preventDefault()
-            console.log(e.target.closest('a').pathname)
+    // docs.forEach((doc) => {
+    //     doc.addEventListener('mouseenter', () => {
+    //         doc.style.opacity = 1
+    //         // doc.style.width = doc.querySelector('.img-responsive').width
+    //     })
+    //     doc.addEventListener('mouseleave', () => {
+    //         doc.style.opacity = 0
+    //     })
+    //     doc.addEventListener('click', (e) => {
+    //         e.preventDefault()
+    //         btn.innerHTML = "X"
+    //         btn.style.position = "absolute"
+    //         btn.style.right = "5px"
+    //         btn.style.zIndex = 99
+    //         // modalContent.innerHTML = `<img src=${e.target.closest('a').pathname} height=700vh>`
+    //         console.log(modalContent)
 
-            modalContent.innerHTML = `<img src=${e.target.closest('a').pathname} height=400px>`
-            console.log(modalContent)
-            // let img = e.target.closest('a').children[0]
-            // console.dir(img)
-            // img.src = e.target.closest('a').pathname
-            // img.style.display = 'block'
-
-
-            animate({
-                duration: 500,
-                timing(timeFraction) {
-                    return timeFraction;
-                },
-                draw(progress) {
-                    modal.style.display = 'block';
-                    modalContent.style.display = 'block';
-                    modalContent.style.opacity = progress;
-                }
-            })
-        })
-    })
+    //         animate({
+    //             duration: 500,
+    //             timing(timeFraction) {
+    //                 return timeFraction;
+    //             },
+    //             draw(progress) {
+    //                 modalContent.append(btn)
+    //                 modal.style.display = 'block';
+    //                 modalContent.style.display = 'block';
+    //                 modalContent.style.opacity = progress;
+    //             }
+    //         })
+    //     })
+    // })
 }
 
 export default documents

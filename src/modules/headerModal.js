@@ -5,7 +5,7 @@ import {
 const headerModal = () => {
     const modal = document.querySelector('.overlay');
     const modalContent = document.querySelector('.header-modal ');
-    const buttons = document.querySelectorAll('.fancyboxModal');
+    const buttons = document.querySelectorAll('a[href="#callback"]');
 
     buttons.forEach(button => {
         button.addEventListener('click', () => {

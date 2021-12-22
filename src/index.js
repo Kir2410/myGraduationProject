@@ -21,6 +21,20 @@ sendForm({
         id: 'calc-total'
     }]
 })
+sendForm({
+    forms: 'form[name="callback-form"]',
+    someElem: [{
+        type: 'input',
+        id: 'calc-total'
+    }]
+})
+sendForm({
+    forms: 'form[name="application-form"]',
+    someElem: [{
+        type: 'input',
+        id: 'calc-total'
+    }]
+})
 scroll()
 headerModal()
 servicesModal()
